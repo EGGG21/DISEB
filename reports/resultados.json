@@ -1,0 +1,663 @@
+{
+  "semilla": 42,
+  "estratificado": true,
+  "n_train": 16000,
+  "n_test": 4000,
+  "ganador": "exp4_lr_base__ampliado",
+  "experimentos": [
+    {
+      "id": "exp1_dummy__contrato",
+      "experimento": "exp1_dummy",
+      "conjunto_variables": "contrato",
+      "rol": "Baseline",
+      "modelo": "DummyClassifier",
+      "hiperparametros": {
+        "strategy": "most_frequent"
+      },
+      "metricas_train": {
+        "accuracy": 0.9308125,
+        "f1_macro": 0.4820833198459198
+      },
+      "metricas_test": {
+        "accuracy": 0.93075,
+        "f1_macro": 0.4820665544477535,
+        "f1_clase_falla": 0.0,
+        "recall_clase_falla": 0.0
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.028352299996186048,
+        "inferencia_total_s": 0.008654399993247353,
+        "inferencia_ms_por_muestra": 0.002163599998311838
+      },
+      "diagnostico": "Referencia ingenua (no aprende patrones)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.93075,
+          "recall": 1.0,
+          "f1-score": 0.964133108895507,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 277.0
+        },
+        "accuracy": 0.93075,
+        "macro avg": {
+          "precision": 0.465375,
+          "recall": 0.5,
+          "f1-score": 0.4820665544477535,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.8662955625,
+          "recall": 0.93075,
+          "f1-score": 0.8973668911044931,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3723,
+          0
+        ],
+        [
+          277,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "exp2_rf_base__contrato",
+      "experimento": "exp2_rf_base",
+      "conjunto_variables": "contrato",
+      "rol": "Modelo principal",
+      "modelo": "Random Forest",
+      "hiperparametros": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "metricas_train": {
+        "accuracy": 1.0,
+        "f1_macro": 1.0
+      },
+      "metricas_test": {
+        "accuracy": 0.9295,
+        "f1_macro": 0.5920369076397599,
+        "f1_clase_falla": 0.22099447513812154,
+        "recall_clase_falla": 0.1444043321299639
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.7578877000050852,
+        "inferencia_total_s": 0.07937770000717137,
+        "inferencia_ms_por_muestra": 0.019844425001792843
+      },
+      "diagnostico": "Sobreajuste (brecha F1 Train-Test = 0.408)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.939463601532567,
+          "recall": 0.9879129734085415,
+          "f1-score": 0.9630793401413983,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.47058823529411764,
+          "recall": 0.1444043321299639,
+          "f1-score": 0.22099447513812154,
+          "support": 277.0
+        },
+        "accuracy": 0.9295,
+        "macro avg": {
+          "precision": 0.7050259184133423,
+          "recall": 0.5661586527692527,
+          "f1-score": 0.5920369076397599,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9069939824205544,
+          "recall": 0.9295,
+          "f1-score": 0.9116899632399215,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3678,
+          45
+        ],
+        [
+          237,
+          40
+        ]
+      ]
+    },
+    {
+      "id": "exp3_rf_regularizado__contrato",
+      "experimento": "exp3_rf_regularizado",
+      "conjunto_variables": "contrato",
+      "rol": "Ajuste A",
+      "modelo": "Random Forest",
+      "hiperparametros": {
+        "n_estimators": 300,
+        "max_depth": 12,
+        "min_samples_leaf": 5,
+        "class_weight": "balanced"
+      },
+      "metricas_train": {
+        "accuracy": 0.865,
+        "f1_macro": 0.7097339802637248
+      },
+      "metricas_test": {
+        "accuracy": 0.82075,
+        "f1_macro": 0.6159490417406346,
+        "f1_clase_falla": 0.33549582947173306,
+        "recall_clase_falla": 0.6534296028880866
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.9267897000099765,
+        "inferencia_total_s": 0.07701770000858232,
+        "inferencia_ms_por_muestra": 0.01925442500214558
+      },
+      "diagnostico": "Optimo (brecha F1 Train-Test = 0.094)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9699812382739212,
+          "recall": 0.8331990330378727,
+          "f1-score": 0.8964022540095362,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.2256857855361596,
+          "recall": 0.6534296028880866,
+          "f1-score": 0.33549582947173306,
+          "support": 277.0
+        },
+        "accuracy": 0.82075,
+        "macro avg": {
+          "precision": 0.5978335119050404,
+          "recall": 0.7433143179629796,
+          "f1-score": 0.6159490417406346,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9184387781718314,
+          "recall": 0.82075,
+          "f1-score": 0.8575594841102934,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3102,
+          621
+        ],
+        [
+          96,
+          181
+        ]
+      ]
+    },
+    {
+      "id": "exp4_lr_base__contrato",
+      "experimento": "exp4_lr_base",
+      "conjunto_variables": "contrato",
+      "rol": "Modelo alternativo",
+      "modelo": "Logistic Regression",
+      "hiperparametros": {
+        "C": 1.0,
+        "penalty": "l2",
+        "class_weight": null,
+        "max_iter": 2000
+      },
+      "metricas_train": {
+        "accuracy": 0.934625,
+        "f1_macro": 0.592061143248646
+      },
+      "metricas_test": {
+        "accuracy": 0.9315,
+        "f1_macro": 0.5719492400536782,
+        "f1_clase_falla": 0.17964071856287425,
+        "recall_clase_falla": 0.10830324909747292
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.03529309999430552,
+        "inferencia_total_s": 0.005747300005168654,
+        "inferencia_ms_por_muestra": 0.0014368250012921635
+      },
+      "diagnostico": "Subajuste (F1 Train = 0.592, brecha = 0.020)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9373573421252853,
+          "recall": 0.9927477840451249,
+          "f1-score": 0.9642577615444822,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.5263157894736842,
+          "recall": 0.10830324909747292,
+          "f1-score": 0.17964071856287425,
+          "support": 277.0
+        },
+        "accuracy": 0.9315,
+        "macro avg": {
+          "precision": 0.7318365657994848,
+          "recall": 0.5505255165712989,
+          "f1-score": 0.5719492400536782,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.908892714604162,
+          "recall": 0.9315,
+          "f1-score": 0.9099230313180059,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3696,
+          27
+        ],
+        [
+          247,
+          30
+        ]
+      ]
+    },
+    {
+      "id": "exp5_lr_balanceado__contrato",
+      "experimento": "exp5_lr_balanceado",
+      "conjunto_variables": "contrato",
+      "rol": "Ajuste B",
+      "modelo": "Logistic Regression",
+      "hiperparametros": {
+        "C": 0.1,
+        "penalty": "l2",
+        "class_weight": "balanced",
+        "max_iter": 2000
+      },
+      "metricas_train": {
+        "accuracy": 0.76225,
+        "f1_macro": 0.5840839284519395
+      },
+      "metricas_test": {
+        "accuracy": 0.75,
+        "f1_macro": 0.5714259387593381,
+        "f1_clase_falla": 0.2947813822284908,
+        "recall_clase_falla": 0.7545126353790613
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.052078599997912534,
+        "inferencia_total_s": 0.005845099993166514,
+        "inferencia_ms_por_muestra": 0.0014612749982916284
+      },
+      "diagnostico": "Subajuste (F1 Train = 0.584, brecha = 0.013)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9762154599510319,
+          "recall": 0.7496642492613483,
+          "f1-score": 0.8480704952901853,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.1831726555652936,
+          "recall": 0.7545126353790613,
+          "f1-score": 0.2947813822284908,
+          "support": 277.0
+        },
+        "accuracy": 0.75,
+        "macro avg": {
+          "precision": 0.5796940577581627,
+          "recall": 0.7520884423202048,
+          "f1-score": 0.5714259387593381,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9212972457473195,
+          "recall": 0.75,
+          "f1-score": 0.8097552242106629,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          2791,
+          932
+        ],
+        [
+          68,
+          209
+        ]
+      ]
+    },
+    {
+      "id": "exp1_dummy__ampliado",
+      "experimento": "exp1_dummy",
+      "conjunto_variables": "ampliado",
+      "rol": "Baseline",
+      "modelo": "DummyClassifier",
+      "hiperparametros": {
+        "strategy": "most_frequent"
+      },
+      "metricas_train": {
+        "accuracy": 0.9308125,
+        "f1_macro": 0.4820833198459198
+      },
+      "metricas_test": {
+        "accuracy": 0.93075,
+        "f1_macro": 0.4820665544477535,
+        "f1_clase_falla": 0.0,
+        "recall_clase_falla": 0.0
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.06302990000403952,
+        "inferencia_total_s": 0.006085799992433749,
+        "inferencia_ms_por_muestra": 0.0015214499981084373
+      },
+      "diagnostico": "Referencia ingenua (no aprende patrones)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.93075,
+          "recall": 1.0,
+          "f1-score": 0.964133108895507,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 277.0
+        },
+        "accuracy": 0.93075,
+        "macro avg": {
+          "precision": 0.465375,
+          "recall": 0.5,
+          "f1-score": 0.4820665544477535,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.8662955625,
+          "recall": 0.93075,
+          "f1-score": 0.8973668911044931,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3723,
+          0
+        ],
+        [
+          277,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "exp2_rf_base__ampliado",
+      "experimento": "exp2_rf_base",
+      "conjunto_variables": "ampliado",
+      "rol": "Modelo principal",
+      "modelo": "Random Forest",
+      "hiperparametros": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "metricas_train": {
+        "accuracy": 1.0,
+        "f1_macro": 1.0
+      },
+      "metricas_test": {
+        "accuracy": 0.94925,
+        "f1_macro": 0.7360186607498436,
+        "f1_clase_falla": 0.49876543209876545,
+        "recall_clase_falla": 0.36462093862815886
+      },
+      "tiempos": {
+        "entrenamiento_s": 1.1450550000008661,
+        "inferencia_total_s": 0.06639600000926293,
+        "inferencia_ms_por_muestra": 0.016599000002315734
+      },
+      "diagnostico": "Sobreajuste (brecha F1 Train-Test = 0.264)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9545454545454546,
+          "recall": 0.9927477840451249,
+          "f1-score": 0.9732718894009217,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.7890625,
+          "recall": 0.36462093862815886,
+          "f1-score": 0.49876543209876545,
+          "support": 277.0
+        },
+        "accuracy": 0.94925,
+        "macro avg": {
+          "precision": 0.8718039772727273,
+          "recall": 0.6786843613366419,
+          "f1-score": 0.7360186607498436,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9430857599431819,
+          "recall": 0.94925,
+          "f1-score": 0.9404123172327473,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3696,
+          27
+        ],
+        [
+          176,
+          101
+        ]
+      ]
+    },
+    {
+      "id": "exp3_rf_regularizado__ampliado",
+      "experimento": "exp3_rf_regularizado",
+      "conjunto_variables": "ampliado",
+      "rol": "Ajuste A",
+      "modelo": "Random Forest",
+      "hiperparametros": {
+        "n_estimators": 300,
+        "max_depth": 12,
+        "min_samples_leaf": 5,
+        "class_weight": "balanced"
+      },
+      "metricas_train": {
+        "accuracy": 0.95375,
+        "f1_macro": 0.86200769204555
+      },
+      "metricas_test": {
+        "accuracy": 0.927,
+        "f1_macro": 0.7846804569493645,
+        "f1_clase_falla": 0.6096256684491979,
+        "recall_clase_falla": 0.8231046931407943
+      },
+      "tiempos": {
+        "entrenamiento_s": 1.437703599993256,
+        "inferencia_total_s": 0.09423460000834893,
+        "inferencia_ms_por_muestra": 0.023558650002087234
+      },
+      "diagnostico": "Optimo (brecha F1 Train-Test = 0.077)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9861150467554548,
+          "recall": 0.934730056406124,
+          "f1-score": 0.9597352454495311,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.4840764331210191,
+          "recall": 0.8231046931407943,
+          "f1-score": 0.6096256684491979,
+          "support": 277.0
+        },
+        "accuracy": 0.927,
+        "macro avg": {
+          "precision": 0.735095739938237,
+          "recall": 0.8789173747734591,
+          "f1-score": 0.7846804569493645,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9513488727612702,
+          "recall": 0.927,
+          "f1-score": 0.935490157242258,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3480,
+          243
+        ],
+        [
+          49,
+          228
+        ]
+      ]
+    },
+    {
+      "id": "exp4_lr_base__ampliado",
+      "experimento": "exp4_lr_base",
+      "conjunto_variables": "ampliado",
+      "rol": "Modelo alternativo",
+      "modelo": "Logistic Regression",
+      "hiperparametros": {
+        "C": 1.0,
+        "penalty": "l2",
+        "class_weight": null,
+        "max_iter": 2000
+      },
+      "metricas_train": {
+        "accuracy": 0.9598125,
+        "f1_macro": 0.8240073147815123
+      },
+      "metricas_test": {
+        "accuracy": 0.95625,
+        "f1_macro": 0.8115734291617036,
+        "f1_clase_falla": 0.6464646464646465,
+        "recall_clase_falla": 0.5776173285198556
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.11576040000363719,
+        "inferencia_total_s": 0.008459999997285195,
+        "inferencia_ms_por_muestra": 0.0021149999993212987
+      },
+      "diagnostico": "Optimo (brecha F1 Train-Test = 0.012)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9690639873083025,
+          "recall": 0.9844211657265646,
+          "f1-score": 0.9766822118587608,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.7339449541284404,
+          "recall": 0.5776173285198556,
+          "f1-score": 0.6464646464646465,
+          "support": 277.0
+        },
+        "accuracy": 0.95625,
+        "macro avg": {
+          "precision": 0.8515044707183714,
+          "recall": 0.78101924712321,
+          "f1-score": 0.8115734291617036,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.952781994260597,
+          "recall": 0.95625,
+          "f1-score": 0.9538146454552184,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3665,
+          58
+        ],
+        [
+          117,
+          160
+        ]
+      ]
+    },
+    {
+      "id": "exp5_lr_balanceado__ampliado",
+      "experimento": "exp5_lr_balanceado",
+      "conjunto_variables": "ampliado",
+      "rol": "Ajuste B",
+      "modelo": "Logistic Regression",
+      "hiperparametros": {
+        "C": 0.1,
+        "penalty": "l2",
+        "class_weight": "balanced",
+        "max_iter": 2000
+      },
+      "metricas_train": {
+        "accuracy": 0.9073125,
+        "f1_macro": 0.7666153554211192
+      },
+      "metricas_test": {
+        "accuracy": 0.9005,
+        "f1_macro": 0.7541921661413914,
+        "f1_clase_falla": 0.5645514223194749,
+        "recall_clase_falla": 0.9314079422382672
+      },
+      "tiempos": {
+        "entrenamiento_s": 0.12335829999938142,
+        "inferencia_total_s": 0.006758799994713627,
+        "inferencia_ms_por_muestra": 0.0016896999986784067
+      },
+      "diagnostico": "Optimo (brecha F1 Train-Test = 0.012)",
+      "reporte_clasificacion_test": {
+        "0": {
+          "precision": 0.9943502824858758,
+          "recall": 0.8982003760408273,
+          "f1-score": 0.9438329099633079,
+          "support": 3723.0
+        },
+        "1": {
+          "precision": 0.4050235478806907,
+          "recall": 0.9314079422382672,
+          "f1-score": 0.5645514223194749,
+          "support": 277.0
+        },
+        "accuracy": 0.9005,
+        "macro avg": {
+          "precision": 0.6996869151832832,
+          "recall": 0.9148041591395473,
+          "f1-score": 0.7541921661413914,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.9535394061144667,
+          "recall": 0.9005,
+          "f1-score": 0.9175676669439725,
+          "support": 4000.0
+        }
+      },
+      "matriz_confusion_test": [
+        [
+          3344,
+          379
+        ],
+        [
+          19,
+          258
+        ]
+      ]
+    }
+  ]
+}

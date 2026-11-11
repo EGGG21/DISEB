@@ -1,0 +1,31 @@
+{
+  "ganador": "exp4_lr_base__ampliado",
+  "modelo": "Logistic Regression",
+  "conjunto": "ampliado",
+  "features_numericas": [
+    "vehicle_age_years",
+    "cell_voltage_avg",
+    "cell_temperature_avg",
+    "previous_faults",
+    "BMS_warning_count",
+    "abnormal_voltage_events",
+    "internal_resistance",
+    "cell_temperature_max",
+    "voltage_imbalance",
+    "temperature_variance",
+    "charge_efficiency",
+    "discharge_efficiency",
+    "cycle_count",
+    "sensor_fault_count",
+    "cooling_system_health",
+    "maintenance_score",
+    "odometer_km"
+  ],
+  "features_categoricas": [
+    "battery_chemistry"
+  ],
+  "etiquetas": {
+    "0": "Bateria Sana",
+    "1": "Riesgo Alto de Falla"
+  }
+}

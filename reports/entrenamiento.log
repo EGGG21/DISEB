@@ -1,0 +1,46 @@
+[INFO] Cargando dataset: data/processed/dataset_limpio.csv
+[INFO] 20,000 registros | Fallas (1): 6.92% | Sanas (0): 93.08%
+[INFO] Conjunto Train: 16,000 muestras | Test: 4,000 muestras (80/20, random_state=42, estratificado=True)
+
+[INFO] ===== Conjunto de variables: CONTRATO (4 variables) =====
+[INFO] Variables: vehicle_age_years, cell_voltage_avg, cell_temperature_avg, battery_chemistry
+[INFO] Entrenando exp1_dummy [contrato]: DummyClassifier {'strategy': 'most_frequent'} ...
+       Train F1m=0.4821 Acc=0.9308 | Test F1m=0.4821 Acc=0.9307 | 0.03s / 0.0022 ms/muestra | Referencia ingenua (no aprende patrones)
+[INFO] Entrenando exp2_rf_base [contrato]: Random Forest {'n_estimators': 200, 'max_depth': None, 'min_samples_leaf': 1, 'class_weight': None} ...
+       Train F1m=1.0000 Acc=1.0000 | Test F1m=0.5920 Acc=0.9295 | 0.76s / 0.0198 ms/muestra | Sobreajuste (brecha F1 Train-Test = 0.408)
+[INFO] Entrenando exp3_rf_regularizado [contrato]: Random Forest {'n_estimators': 300, 'max_depth': 12, 'min_samples_leaf': 5, 'class_weight': 'balanced'} ...
+       Train F1m=0.7097 Acc=0.8650 | Test F1m=0.6159 Acc=0.8207 | 0.93s / 0.0193 ms/muestra | Optimo (brecha F1 Train-Test = 0.094)
+[INFO] Entrenando exp4_lr_base [contrato]: Logistic Regression {'C': 1.0, 'penalty': 'l2', 'class_weight': None, 'max_iter': 2000} ...
+       Train F1m=0.5921 Acc=0.9346 | Test F1m=0.5719 Acc=0.9315 | 0.04s / 0.0014 ms/muestra | Subajuste (F1 Train = 0.592, brecha = 0.020)
+[INFO] Entrenando exp5_lr_balanceado [contrato]: Logistic Regression {'C': 0.1, 'penalty': 'l2', 'class_weight': 'balanced', 'max_iter': 2000} ...
+       Train F1m=0.5841 Acc=0.7622 | Test F1m=0.5714 Acc=0.7500 | 0.05s / 0.0015 ms/muestra | Subajuste (F1 Train = 0.584, brecha = 0.013)
+
+[INFO] ===== Conjunto de variables: AMPLIADO (18 variables) =====
+[INFO] Variables: vehicle_age_years, cell_voltage_avg, cell_temperature_avg, previous_faults, BMS_warning_count, abnormal_voltage_events, internal_resistance, cell_temperature_max, voltage_imbalance, temperature_variance, charge_efficiency, discharge_efficiency, cycle_count, sensor_fault_count, cooling_system_health, maintenance_score, odometer_km, battery_chemistry
+[INFO] Entrenando exp1_dummy [ampliado]: DummyClassifier {'strategy': 'most_frequent'} ...
+       Train F1m=0.4821 Acc=0.9308 | Test F1m=0.4821 Acc=0.9307 | 0.06s / 0.0015 ms/muestra | Referencia ingenua (no aprende patrones)
+[INFO] Entrenando exp2_rf_base [ampliado]: Random Forest {'n_estimators': 200, 'max_depth': None, 'min_samples_leaf': 1, 'class_weight': None} ...
+       Train F1m=1.0000 Acc=1.0000 | Test F1m=0.7360 Acc=0.9493 | 1.15s / 0.0166 ms/muestra | Sobreajuste (brecha F1 Train-Test = 0.264)
+[INFO] Entrenando exp3_rf_regularizado [ampliado]: Random Forest {'n_estimators': 300, 'max_depth': 12, 'min_samples_leaf': 5, 'class_weight': 'balanced'} ...
+       Train F1m=0.8620 Acc=0.9537 | Test F1m=0.7847 Acc=0.9270 | 1.44s / 0.0236 ms/muestra | Optimo (brecha F1 Train-Test = 0.077)
+[INFO] Entrenando exp4_lr_base [ampliado]: Logistic Regression {'C': 1.0, 'penalty': 'l2', 'class_weight': None, 'max_iter': 2000} ...
+       Train F1m=0.8240 Acc=0.9598 | Test F1m=0.8116 Acc=0.9563 | 0.12s / 0.0021 ms/muestra | Optimo (brecha F1 Train-Test = 0.012)
+[INFO] Entrenando exp5_lr_balanceado [ampliado]: Logistic Regression {'C': 0.1, 'penalty': 'l2', 'class_weight': 'balanced', 'max_iter': 2000} ...
+       Train F1m=0.7666 Acc=0.9073 | Test F1m=0.7542 Acc=0.9005 | 0.12s / 0.0017 ms/muestra | Optimo (brecha F1 Train-Test = 0.012)
+
+[RESULTADO] Modelo ganador: exp4_lr_base__ampliado (Logistic Regression, variables: ampliado)
+[RESULTADO] F1 Macro Test = 0.8116 | Accuracy Test = 0.9563 | Meta Entrega 2: >= 0.85
+
+[REPORTE DE CLASIFICACION - TEST - GANADOR]
+              precision    recall  f1-score   support
+
+      0 Sana       0.97      0.98      0.98      3723
+     1 Falla       0.73      0.58      0.65       277
+
+    accuracy                           0.96      4000
+   macro avg       0.85      0.78      0.81      4000
+weighted avg       0.95      0.96      0.95      4000
+
+[SUCCESS] Modelo ganador serializado: C:\Users\yosoy\Music\TAREA3IA\DISEB\models\modelo_ganador.joblib
+[SUCCESS] Imputador y escalador guardados: C:\Users\yosoy\Music\TAREA3IA\DISEB\models\imputer.joblib, C:\Users\yosoy\Music\TAREA3IA\DISEB\models\scaler.joblib
+[SUCCESS] Reportes guardados en C:\Users\yosoy\Music\TAREA3IA\DISEB\reports
